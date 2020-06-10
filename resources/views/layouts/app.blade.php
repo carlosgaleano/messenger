@@ -32,15 +32,15 @@
          
                 <b-navbar-nav  class="ml-auto">
 
-                     <!-- Authentication Links -->
-                     @guest
+                    <!-- Authentication Links -->
+                    @guest
                     <b-nav-item href="{{ route('login') }}">Ingresar</b-nav-item>
                     <b-nav-item href="{{ route('register') }}">Registrarse</b-nav-item>
                     @else
                         <!-- Navbar dropdowns -->
         
-                        <b-nav-item-dropdown text="Username" right>
-                        <b-dropdown-item href="#">Cerrar Sesión</b-dropdown-item>
+                        <b-nav-item-dropdown text="{{  Auth::user()->name  }}" right>
+                        <b-dropdown-item href="#" @click="logout" >Cerrar Sesión</b-dropdown-item>
                         
                         </b-nav-item-dropdown>
                     @endguest
