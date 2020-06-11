@@ -6,14 +6,25 @@
         <b-col></b-col>
         <b-col cols="8">
 
-            <b-card header-text-variant="white" header-tag="header" header-bg-variant="dark" title="Inicio de Sesión">
+            <b-card header-text-variant="white" class="my-3" header-tag="header" header-bg-variant="dark" title="Inicio de Sesión">
                 <b-card-text>
-                    <b-alert show>Por favor Ingrese sus datos</b-alert>
+                    <b-alert show>Por favor Ingrese sus datos2</b-alert>
+                   
+                    @if ($errors->any()) 
+                        <b-alert show variant="danger">
+                            <ul class="mb-0">
+                                   @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                @endforeach    
+                            </ul>
+                        </b-alert>
+                    @endif 
+                      
                     <b-form method="POST" action="{{ route('login') }}">
                         @csrf
                         
-
-                        <b-form-group  description="Nunca compartiremos tu correo. Está seguro con nosotros." label="Correo Electronico" label-for="email" >
+                    
+                        <b-form-group   label="Correo Electronico" label-for="email" >
                             <b-form-input type="email" id="email"  name="email" 
                             value="{{ old('email') }}" required  autofocus autocomplete="email"
                             placeholder="example@dominio.com" ></b-form-input>
@@ -21,7 +32,7 @@
 
                         <b-form-group  label="Contraseña" label-for="password" > 
                             <b-form-input type="password" id="password"  name="password" 
-                            value="{{ old('password') }}" required 
+                             required 
                             ></b-form-input>
                         </b-form-group>
 

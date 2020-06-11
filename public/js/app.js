@@ -93109,7 +93109,7 @@ var app = new Vue({
   el: '#app',
   methods: {
     logout: function logout() {
-      alert('sesión cerrada');
+      document.getElementById('logout-form').submit();
     }
   }
 });
