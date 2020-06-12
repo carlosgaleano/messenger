@@ -8,6 +8,16 @@
         <b-card header-text-variant="white" class="my-3" header-tag="header" header-bg-variant="dark" title="Registro">
                 <b-card-text>
                     <b-alert show>Por favor Ingrese sus datos</b-alert>
+
+                    @if ($errors->any()) 
+                        <b-alert show variant="danger">
+                            <ul class="mb-0">
+                                   @foreach ($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                @endforeach    
+                            </ul>
+                        </b-alert>
+                    @endif 
                     <b-form method="POST" action="{{ route('register') }}">
                         @csrf
                         
