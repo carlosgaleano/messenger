@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype html class="h-100">
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
@@ -19,8 +19,8 @@
     <!-- Styles -->
   
 </head>
-<body>
-    <div id="app">
+<body class="h-100">
+    <div id="app" class="h-100" >
 
 
     <b-navbar toggleable="sm" type="dark" variant="primary">
