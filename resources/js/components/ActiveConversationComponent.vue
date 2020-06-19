@@ -1,20 +1,50 @@
 <template>
- <b-row class="h-100" >
+ <b-row class="h-100 mt-0"  >
         <b-col cols="8">
             <b-card
-            footer-bg-variant="info"
-            footer-border-variant="info"
+            footer-bg-variant="light"
+            footer-border-variant="dark"
             title="Conversación activa"
             class="h-100"
-          
             >
-            <b-card-text>Header and footers variants.</b-card-text>
+          
+                <b-media  vertical-align="center" class="mb-2">
+                        <template v-slot:aside>
+                            <b-img rounded="circle" blank blank-color="#ccc" width="48" alt="placeholder"></b-img>
+                        </template>
+                        <b-card >
+                            <p class="mb-0">
+                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
+                            . 
+                            </p>
+                        </b-card>
+                </b-media>
+
+                <b-media  right-align vertical-align="center"  class="mb-2">
+                        <template v-slot:aside>
+                            <b-img rounded="circle" blank blank-color="#ccc" width="48" alt="placeholder"></b-img>
+                        </template>
+                        <b-card >
+                             <p class="mb-0">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        </p>     
+                        </b-card>
+
+                       
+                </b-media>
+
+
                 <div slot="footer">
-                    <b-form class="my-3 mx-2">
-                        <b-form-input class="text-center"           
-                        type="text"
-                        placeholder="Buscar contacto ..."
-                        ></b-form-input> 
+                    <b-form class="mb-0"  >
+                        <b-input-group  class="mt-3">
+                            <b-form-input class="text-center"           
+                            type="text"
+                            placeholder="Escribe un mensaje ..."
+                            ></b-form-input> 
+                            <b-input-group-append>
+                                <b-button variant="primary">Enviar</b-button>
+                            </b-input-group-append>
+                        </b-input-group>                      
                     </b-form>
                 </div>
         </b-card>

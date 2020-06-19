@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<b-container fluid style="height: calc(100vh - 104px); ">
+<b-container fluid style="height: calc(100vh - 57px); ">
     <b-row class="h-100" no-gutters>
         <b-col class="h-100" >
 
