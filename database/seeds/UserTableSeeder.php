@@ -20,6 +20,12 @@ class UserTableSeeder extends Seeder
             'password'=> bcrypt('123456')
         ]);
 
+        User::create([
+            'name'=> 'Juan',
+            'email'=>'Juan@dominio.com',
+            'password'=> bcrypt('123456')
+        ]);
+
       
 
     }

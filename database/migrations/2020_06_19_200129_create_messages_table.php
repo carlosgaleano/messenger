@@ -17,12 +17,12 @@ class CreateMessagesTable extends Migration
             $table->id();
 
             //from 
-            $table->unsignedBigInteger('from_id');
-            $table->foreign('from_id')->references('id')->on('users');
+            //$table->unsignedBigInteger('from_id');
+            $table->foreignId('from_id')->references('id')->on('users');
 
              //to 
-             $table->unsignedBigInteger('to_id');
-             $table->foreign('to_id')->references('id')->on('users');
+            // $table->unsignedBigInteger('to_id');
+             $table->foreignId('to_id')->references('id')->on('users');
              //content
             $table->text('content');
             $table->timestamps();
