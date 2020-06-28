@@ -7,32 +7,16 @@
             title="Conversación activa"
             class="h-100"
             >
-          
-                <b-media  vertical-align="center" class="mb-2">
-                        <template v-slot:aside>
-                            <b-img rounded="circle" blank blank-color="#ccc" width="48" alt="placeholder"></b-img>
-                        </template>
-                        <b-card >
-                            <p class="mb-0">
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin.
-                            . 
-                            </p>
-                        </b-card>
-                </b-media>
+           <message-conversation-component >
+               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisssque ante sollicitudin.
 
-                <b-media  right-align vertical-align="center"  class="mb-2">
-                        <template v-slot:aside>
-                            <b-img rounded="circle" blank blank-color="#ccc" width="48" alt="placeholder"></b-img>
-                        </template>
-                        <b-card >
-                             <p class="mb-0">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        </p>     
-                        </b-card>
+           </message-conversation-component >
 
-                       
-                </b-media>
+           <message-conversation-component written-by-me >
+               Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
+           </message-conversation-component>
+                
 
                 <div slot="footer">
                     <b-form class="mb-0"  >
