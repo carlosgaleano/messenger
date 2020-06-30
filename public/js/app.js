@@ -1955,10 +1955,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {};
+    return {
+      messages: [],
+      newMessage: ''
+    };
+  },
+  mounted: function mounted() {
+    this.getMessage();
+  },
+  methods: {
+    getMessage: function getMessage() {
+      var _this = this;
+
+      axios.get('/api/messages').then(function (response) {
+        console.log(response.data);
+        _this.messages = response.data;
+      });
+    },
+    postMessage: function postMessage() {
+      var _this2 = this;
+
+      var params = {
+        to_id: 2,
+        content: this.newMessage
+      };
+      axios.post('/api/messages', params).then(function (response) {
+        if (response.data.success) {
+          _this2.newMessage = '';
+
+          _this2.getMessage();
+        }
+      });
+    }
   }
 });
 
@@ -81054,21 +81084,22 @@ var render = function() {
               }
             },
             [
-              _c("message-conversation-component", [
-                _vm._v(
-                  "\n               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisssque ante sollicitudin.\n\n           "
+              _vm._l(_vm.messages, function(message) {
+                return _c(
+                  "message-conversation-component",
+                  {
+                    key: message.id,
+                    attrs: { writtenByMe: message.written_by_me }
+                  },
+                  [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(message.content) +
+                        "\n           "
+                    )
+                  ]
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "message-conversation-component",
-                { attrs: { "written-by-me": "" } },
-                [
-                  _vm._v(
-                    "\n               Lorem ipsum dolor sit amet consectetur adipisicing elit.\n\n           "
-                  )
-                ]
-              ),
+              }),
               _vm._v(" "),
               _c(
                 "div",
@@ -81076,7 +81107,16 @@ var render = function() {
                 [
                   _c(
                     "b-form",
-                    { staticClass: "mb-0" },
+                    {
+                      staticClass: "mb-0",
+                      attrs: { autocomplete: "off" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.postMessage($event)
+                        }
+                      }
+                    },
                     [
                       _c(
                         "b-input-group",
@@ -81087,6 +81127,13 @@ var render = function() {
                             attrs: {
                               type: "text",
                               placeholder: "Escribe un mensaje ..."
+                            },
+                            model: {
+                              value: _vm.newMessage,
+                              callback: function($$v) {
+                                _vm.newMessage = $$v
+                              },
+                              expression: "newMessage"
                             }
                           }),
                           _vm._v(" "),
@@ -81095,7 +81142,9 @@ var render = function() {
                             [
                               _c(
                                 "b-button",
-                                { attrs: { variant: "primary" } },
+                                {
+                                  attrs: { type: "submit", variant: "primary" }
+                                },
                                 [_vm._v("Enviar")]
                               )
                             ],
@@ -81111,7 +81160,7 @@ var render = function() {
                 1
               )
             ],
-            1
+            2
           )
         ],
         1
@@ -93589,14 +93638,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*!*****************************************************************!*\
   !*** ./resources/js/components/ActiveConversationComponent.vue ***!
   \*****************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ActiveConversationComponent_vue_vue_type_template_id_5739cb39___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActiveConversationComponent.vue?vue&type=template&id=5739cb39& */ "./resources/js/components/ActiveConversationComponent.vue?vue&type=template&id=5739cb39&");
 /* harmony import */ var _ActiveConversationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ActiveConversationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ActiveConversationComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _ActiveConversationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _ActiveConversationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -93626,7 +93676,7 @@ component.options.__file = "resources/js/components/ActiveConversationComponent.
 /*!******************************************************************************************!*\
   !*** ./resources/js/components/ActiveConversationComponent.vue?vue&type=script&lang=js& ***!
   \******************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

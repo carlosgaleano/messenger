@@ -7,26 +7,25 @@
             title="Conversación activa"
             class="h-100"
             >
-           <message-conversation-component >
-               Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisssque ante sollicitudin.
-
+           <message-conversation-component
+           v-for="message in messages"
+           :key="message.id"
+           :writtenByMe="message.written_by_me"
+           >
+            {{ message.content}}
            </message-conversation-component >
-
-           <message-conversation-component written-by-me >
-               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-
-           </message-conversation-component>
 
 
                 <div slot="footer">
-                    <b-form class="mb-0"  >
+                    <b-form class="mb-0" @submit.prevent="postMessage" autocomplete="off" >
                         <b-input-group  class="mt-3">
                             <b-form-input class="text-center"
                             type="text"
+                            v-model="newMessage"
                             placeholder="Escribe un mensaje ..."
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button variant="primary">Enviar</b-button>
+                                <b-button type="submit" variant="primary">Enviar</b-button>
                             </b-input-group-append>
                         </b-input-group>
                     </b-form>
@@ -50,8 +49,41 @@
 export default {
     data(){
         return{
-
+            messages:[],
+            newMessage: ''
         };
+    },
+    mounted(){
+        this.getMessage();
+
+    },
+    methods:{
+       getMessage(){
+           axios.get('/api/messages')
+        .then((response) => {
+            console.log(response.data)
+            this.messages=response.data
+
+        });
+
+       },
+       postMessage(){
+           const params={
+               to_id:2,
+               content:this.newMessage
+           };
+        axios.post('/api/messages',params)
+        .then((response) => {
+         if(response.data.success){
+             this.newMessage='';
+             this.getMessage();
+
+
+         }
+        });
+
+       }
+
     }
 }
 </script>
