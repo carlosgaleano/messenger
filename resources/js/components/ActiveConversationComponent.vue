@@ -28,7 +28,7 @@
                             <b-input-group-append>
                                 <b-button variant="primary">Enviar</b-button>
                             </b-input-group-append>
-                         </b-input-group>
+                        </b-input-group>
                     </b-form>
                 </div>
         </b-card>
