@@ -16,19 +16,19 @@
                Lorem ipsum dolor sit amet consectetur adipisicing elit.
 
            </message-conversation-component>
-                
+
 
                 <div slot="footer">
                     <b-form class="mb-0"  >
                         <b-input-group  class="mt-3">
-                            <b-form-input class="text-center"           
+                            <b-form-input class="text-center"
                             type="text"
                             placeholder="Escribe un mensaje ..."
-                            ></b-form-input> 
+                            ></b-form-input>
                             <b-input-group-append>
                                 <b-button variant="primary">Enviar</b-button>
                             </b-input-group-append>
-                        </b-input-group>                      
+                         </b-input-group>
                     </b-form>
                 </div>
         </b-card>
@@ -41,9 +41,9 @@
             Desactivar notificaciones
         </b-form-checkbox>
     </b-col>
-</b-row> 
+</b-row>
 
-    
+
 </template>
 
 <script>
