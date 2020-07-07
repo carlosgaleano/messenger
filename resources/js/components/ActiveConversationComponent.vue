@@ -59,7 +59,12 @@ export default {
     },
     methods:{
        getMessage(){
-           axios.get('/api/messages')
+           axios.get('/api/messages',{
+               params:{
+                    contact_id:2
+               }
+              
+           })
         .then((response) => {
             console.log(response.data)
             this.messages=response.data

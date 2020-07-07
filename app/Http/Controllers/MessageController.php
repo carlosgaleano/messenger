@@ -8,14 +8,17 @@ use DB;
 
 class MessageController extends Controller
 {
-    public  function index(){
+    public  function index(Request $request){
         $userId=auth()->id();
+        $contactId=$request->contact_id;
+        //$contactId=2;
+
+        //dd($request->contact_id);
         return Message::select(
         DB::raw("IF(`from_id`=1,1,0) as  written_by_me"),
         'to_id',
-        'content'
-
-        )
+        'content')
+        ->where('from_id', $userId )->where('to_id',$contactId)
         ->get();
        }
 
