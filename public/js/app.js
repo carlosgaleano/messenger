@@ -1959,7 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       messages: [],
-      newMessage: ''
+      newMessage: '',
+      contactId: 2
     };
   },
   mounted: function mounted() {
@@ -1971,10 +1972,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/messages', {
         params: {
-          contact_id: 2
+          contact_id: this.contactId
         }
       }).then(function (response) {
-        console.log(response.data);
+        //console.log(response.data)
         _this.messages = response.data;
       });
     },
@@ -2070,6 +2071,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
+  },
+  mounted: function mounted() {
+    this.getConversation();
+  },
+  methods: {
+    getConversation: function getConversation() {
+      axios.get('/api/conversations').then(function (response) {
+        console.log(response.data);
+      });
+    }
   }
 });
 
@@ -81186,7 +81197,7 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("p", [_vm._v("Usuario seleccionado")]),
+          _c("p", [_vm._v("Usuario:: seleccionado")]),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),

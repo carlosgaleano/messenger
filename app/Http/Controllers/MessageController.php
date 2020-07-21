@@ -17,9 +17,15 @@ class MessageController extends Controller
         return Message::select(
         DB::raw("IF(`from_id`=1,1,0) as  written_by_me"),
         'to_id',
-        'content')
-        ->where('from_id', $userId )->where('to_id',$contactId)
-        ->get();
+        'content'
+        )->where(function ($query) use($userId, $contactId ){
+            $query->where('from_id', $userId )->where('to_id',$contactId);
+        })->orwhere(function ($query) use($userId, $contactId){
+            $query->where('from_id', $contactId )->where('to_id',$userId);
+        })->get();
+
+
+
        }
 
     public function store(Request $request){
