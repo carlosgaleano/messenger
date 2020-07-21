@@ -34,7 +34,7 @@
     </b-col>
     <b-col cols="4">
     <b-img  blank  blank-color='#777'  width ="60" height="60"  rounded="circle" alt="img" class="m-1"></b-img>
-        <p>Usuario seleccionado</p>
+        <p>Usuario:: seleccionado</p>
         <hr>
         <b-form-checkbox>
             Desactivar notificaciones
@@ -63,7 +63,7 @@ export default {
                params:{
                     contact_id:2
                }
-              
+
            })
         .then((response) => {
             console.log(response.data)
