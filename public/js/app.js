@@ -2073,6 +2073,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2090,6 +2092,9 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response.data);
         _this.conversations = response.data;
       });
+    },
+    selectConversation: function selectConversation(conversation) {
+      console.log(conversation);
     }
   }
 });
@@ -81289,7 +81294,7 @@ var render = function() {
             { staticClass: "d-none d-md-block", attrs: { cols: "3" } },
             [
               _c("p", { staticClass: "text-muted small" }, [
-                _vm._v(_vm._s(_vm.conversation.Last_time))
+                _vm._v(_vm._s(_vm.conversation.last_time))
               ])
             ]
           )
@@ -81343,7 +81348,12 @@ var render = function() {
         _vm._l(_vm.conversations, function(conversation) {
           return _c("contact-component", {
             key: conversation.id,
-            attrs: { conversation: conversation }
+            attrs: { conversation: conversation },
+            nativeOn: {
+              click: function($event) {
+                return _vm.selectConversation(conversation)
+              }
+            }
           })
         }),
         1

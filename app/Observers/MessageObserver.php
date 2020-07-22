@@ -15,8 +15,21 @@ class MessageObserver
      */
     public function created(Message $message)
     {
-        $conversation= Conversation::where('user_id', $message->from_id)
-                             ->where('contact_id', $message->to_id)->first();
-    }
+        $conversation = Conversation::where('user_id', $message->from_id)
+            ->where('contact_id', $message->to_id)->first();
 
+        if ($conversation) {
+            $conversation->last_message = "tú: $message->content";
+            $conversation->last_time = $message->created_at;
+            $conversation->save();
+        }
+        $conversation = Conversation::where('contact_id', $message->from_id)
+            ->where('contact_id', $message->to_id)->first();
+
+        if ($conversation) {
+            $conversation->last_message = "tú: $message->content";
+            $conversation->last_time = $message->created_at;
+            $conversation->save();
+        }
+    }
 }
