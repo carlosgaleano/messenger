@@ -74,6 +74,7 @@ export default {
             //console.log(response.data)
             this.messages=response.data
 
+
         });
 
        },

@@ -12,7 +12,6 @@
             :contact-id="selectConversation.contact_id"
             :contact-name="selectConversation.contact_name"
             ></active-conversation-component>
-
         </b-col>
     </b-row>
 </b-container>
@@ -26,11 +25,17 @@ export default {
     },
     mounted(){
 
+            console.log('tes 8881')
+            Echo.channel('example')
+            .listen('MessageSent', (e) => {
+            console.log('prueba de echox ',e);
+            });
     },
     methods:{
         changeActiveConversation(conversation){
            // console.log('nueva conv seleccionada',conversation);
            this.selectConversation = conversation;
+
         }
     }
 }
