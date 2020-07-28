@@ -1,19 +1,26 @@
 <template>
  <b-row class="h-100 mt-0"  >
         <b-col cols="8">
-            <b-card
+            <b-card no-body
             footer-bg-variant="light"
             footer-border-variant="dark"
             title="Conversación activa"
             class="h-100"
             >
-           <message-conversation-component
-           v-for="message in messages"
-           :key="message.id"
-           :writtenByMe="message.written_by_me"
-           >
-            {{ message.content}}
-           </message-conversation-component >
+            <b-card-body class="card-body-scroll">
+                <message-conversation-component
+                v-for="message in messages"
+                :key="message.id"
+                :writtenByMe="message.written_by_me">
+                {{ message.content}}
+            </message-conversation-component >
+            </b-card-body>
+
+            <div id="messages-container" >
+
+
+            </div>
+
 
 
                 <div slot="footer">
@@ -44,40 +51,32 @@
 
 
 </template>
-
+<style >
+    .card-body-scroll {
+        max-height: calc(100vh - 56px) !important;
+        overflow-y: auto;
+    }
+</style>
 <script>
 export default {
     props:{
         contactId: Number,
-        contactName: String
+        contactName: String,
+        messages: Array
     },
     data(){
         return{
-            messages:[],
+           // messages:[],
             newMessage: '',
 
         };
     },
     mounted(){
-        this.getMessage();
+      //  this.getMessage();
 
     },
     methods:{
-       getMessage(){
-           axios.get('/api/messages',{
-               params:{
-                    contact_id:this.contactId
-               }
 
-           })
-        .then((response) => {
-            //console.log(response.data)
-            this.messages=response.data
-
-
-        });
-
-       },
        postMessage(){
            const params={
                to_id:2,
@@ -87,19 +86,31 @@ export default {
         .then((response) => {
          if(response.data.success){
              this.newMessage='';
-             this.getMessage();
+            // this.getMessage();
 
 
          }
         });
 
+       },
+       scrollToBottom(){
+           const el = document.querySelector('.card-body-scroll');
+           el.scrollTop=el.scrollHeight;
        }
     },
     watch:{
+        messages(){
+            setTimeout(()=>{
+        this.scrollToBottom();
+            },100);
+
+        }
+    }
+  /*   watch:{
         contactId(value){
             console.log(`contactId =>${this.contactId}` );
             this.getMessage();
         }
-    }
+    } */
 }
 </script>

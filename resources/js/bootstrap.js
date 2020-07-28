@@ -38,15 +38,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
  window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'c289252ecf75c077d95e',
-    cluster: 'us2',
-    encrypted:true
+    key: process.env.MIX_PUSHER_APP_KEY,
+    cluster: process.env.MIX_PUSHER_APP_CLUSTER,
+   forceTLS: true
 });
 
-/*  window.Echo = new Echo({
-     broadcaster: 'pusher',
-     key: process.env.MIX_PUSHER_APP_KEY,
-     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-    forceTLS: true
- });
+/*
+ window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'c289252ecf75c077d95e',
+    cluster: 'us2',
+    encrypted:false,
+    wsHost: window.location.hostname,
+    wsPort: 6004,
+    disableStats: true,
+    enabledTransports: ['ws', 'wss'],
+});
  */
+
