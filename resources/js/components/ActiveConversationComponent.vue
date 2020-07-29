@@ -98,6 +98,13 @@ export default {
            el.scrollTop=el.scrollHeight;
        }
     },
+    updated(){
+        this.scrollToBottom();
+        console.log('messages is change');
+    }
+
+
+    /*,
     watch:{
         messages(){
             setTimeout(()=>{
@@ -106,7 +113,7 @@ export default {
 
         }
     }
-  /*   watch:{
+     watch:{
         contactId(value){
             console.log(`contactId =>${this.contactId}` );
             this.getMessage();
