@@ -3,7 +3,12 @@
     <b-row class="h-100" no-gutters>
         <b-col class="h-100">
 
-            <contact-list-component @conversationSelected="changeActiveConversation($event)"  ></contact-list-component>
+            <contact-list-component
+            @conversationSelected="changeActiveConversation($event)"
+            :conversations="conversations"
+              >
+
+            </contact-list-component>
 
         </b-col>
         <b-col cols="8" class="h-100">
@@ -12,6 +17,7 @@
             :contact-id="selectConversation.contact_id"
             :contact-name="selectConversation.contact_name"
             :messages="messages"
+            @messageCreated="addMessage($event)"
             ></active-conversation-component>
         </b-col>
     </b-row>
@@ -25,16 +31,21 @@ export default {
     data(){
         return{
             selectConversation: null,
-            messages: []
+            messages: [],
+            conversations:[]
         };
     },
     mounted(){
-
-            Echo.channel('example')
+            this.getConversation();
+            Echo.channel(`users.${this.userId}`)
             .listen('MessageSent', (data) => {
+
             const message = data.message;
-            message.written_by_me=(this.userId == message.from_id);
-            this.messages.push(data.message);
+            //message.written_by_me=(this.userId == message.from_id);
+            message.written_by_me=false;
+            console.log('datos recibidos laravel echo',message);
+            this.addMessage(message);
+
             });
     },
     methods:{
@@ -44,19 +55,42 @@ export default {
            this.getMessage();
 
         },
+          getConversation(){
+            axios.get('/api/conversations')
+            .then((response)=>{
+                console.log(response.data);
+                this.conversations=response.data;
+            });
+        },
          getMessage(){
            axios.get('/api/messages',{
                params:{
                     contact_id:this.selectConversation.contact_id
                }
-
            })
         .then((response) => {
            // console.log(response.data)
             this.messages=response.data
-
-
         });
+       },
+       addMessage(message){
+
+           const conversation=this.conversations.find((convesation)=>{
+               return convesation.contact_id== message.from_id ||
+               convesation.contact_id== message.to_id
+           });
+            const autor =this.userId === message.from_id ? 'tú' : conversation.contact_name;
+            conversation.last_message=`${autor}:${message.content}`;
+            conversation.last_time=message.created_at;
+
+           console.log('contaid',this.selectConversation.contact_id,message.to_id);
+           if(this.selectConversation.contact_id == message.from_id
+           || 'contaid',this.selectConversation.contact_id,message.to_id ){
+
+                console.log(message)
+                this.messages.push(message);
+
+           }
 
        }
     }

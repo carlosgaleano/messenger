@@ -79,16 +79,16 @@ export default {
 
        postMessage(){
            const params={
-               to_id:2,
+               to_id:this.contactId,
                content:this.newMessage
            };
         axios.post('/api/messages',params)
         .then((response) => {
          if(response.data.success){
              this.newMessage='';
-            // this.getMessage();
-
-
+             const message=response.data.message;
+             message.written_by_me=true;
+             this.$emit('messageCreated', message);
          }
         });
 

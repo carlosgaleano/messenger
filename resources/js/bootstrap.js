@@ -43,6 +43,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
    forceTLS: true
 });
 
+// format Data & Time::
+window.moment = require('moment');
+
+
 /*
  window.Echo = new Echo({
     broadcaster: 'pusher',
