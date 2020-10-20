@@ -47,8 +47,12 @@
                     <!-- Navbar dropdowns -->
 
                     <b-nav-item-dropdown text="{{  Auth::user()->name  }}" right>
+                          <b-dropdown-item href="{{ url('/profile')}}" >
+                            Modificar perfil
+                        </b-dropdown-item>
                         <b-dropdown-item href="#" @click="logout">
-                            Cerrar Sesión</b-dropdown-item>
+                            Cerrar Sesión
+                        </b-dropdown-item>
 
                     </b-nav-item-dropdown>
                     @endguest

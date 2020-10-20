@@ -1,6 +1,6 @@
 <template>
 
-<b-img  blank  :blank-color="online ? 'green' : 'gray'"  width ="10" 
+<b-img  blank  :blank-color="online ? 'green' : 'gray'"  width ="10"
 :title="online? 'Conectado' : 'Desconectado'"
 height="10"  rounded="circle" alt="img" ></b-img>
 
@@ -12,14 +12,14 @@ height="10"  rounded="circle" alt="img" ></b-img>
 export default {
         props:{
         online: Boolean,
-      
+
     },
     data(){
-        return{         
-      
+        return{
+
         };
     }
-   
-    
+
+
 }
 </script>

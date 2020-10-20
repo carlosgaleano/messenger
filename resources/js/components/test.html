@@ -1,0 +1,277 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://createmovementsmerchandisesap.sapsinergia.schema.sap.com" targetNamespace="http://createmovementsmerchandisesap.sapsinergia.schema.sap.com" elementFormDefault="qualified">
+<xs:element name="CreateMovementsMerchandiseSAPRequest" type="tns:CreateMovementsMerchandiseSAPRequest"/>
+<xs:element name="CreateMovementsMerchandiseSAPResponse" type="tns:CreateMovementsMerchandiseSAPResponse"/>
+<xs:complexType name="CreateMovementsMerchandiseSAPRequest">
+<xs:sequence>
+<xs:element name="extension" type="tns:Extension" minOccurs="1"/>
+<xs:element name="header" type="tns:Header" minOccurs="1"/>
+<xs:element name="typeMovement" type="tns:TypeMovement" minOccurs="1"/>
+<xs:element name="creationMovement" type="tns:CreationMovement" minOccurs="1"/>
+<xs:element name="refEwm" type="tns:RefEwm" minOccurs="1"/>
+<xs:element name="serialNumber" type="tns:SerialNumber" minOccurs="1"/>
+<xs:element name="servPartData" type="tns:ServPartData" minOccurs="1"/>
+<xs:element name="simulationMode" type="xs:string" minOccurs="1"/>
+<xs:element name="traceabilityDetail" type="tns:TraceabilityDetailRequest" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Extension">
+<xs:sequence>
+<xs:element name="listExtension" type="tns:ListExtension" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ListExtension">
+<xs:sequence>
+<xs:element name="structureName" type="xs:string" minOccurs="0"/>
+<xs:element name="structureDataSectionOne" type="xs:string" minOccurs="0"/>
+<xs:element name="structureDataSectionTwo" type="xs:string" minOccurs="0"/>
+<xs:element name="structureDataSectionThree" type="xs:string" minOccurs="0"/>
+<xs:element name="structureDataSectionFour" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Header">
+<xs:sequence>
+<xs:element name="postingDateDocument" type="xs:string" minOccurs="1"/>
+<xs:element name="documentDate" type="xs:string" minOccurs="1"/>
+<xs:element name="referenceDocumentNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="merchandiseReceiptNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="merchandiseSupportVoucherNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="userName" type="xs:string" minOccurs="0"/>
+<xs:element name="textHeaderDocument" type="xs:string" minOccurs="0"/>
+<xs:element name="verGrGiSlip" type="xs:string" minOccurs="0"/>
+<xs:element name="verGrGiSlipx" type="xs:string" minOccurs="0"/>
+<xs:element name="externalWMS" type="xs:string" minOccurs="0"/>
+<xs:element name="referenceDocumentNumberLong" type="xs:string" minOccurs="0"/>
+<xs:element name="merchandiseReceiptNumberLong" type="xs:string" minOccurs="0"/>
+<xs:element name="barcode" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TypeMovement">
+<xs:sequence>
+<xs:element name="movementCode" type="xs:string" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CreationMovement">
+<xs:sequence>
+<xs:element name="listCreationMovement" type="tns:ListCreationMovement" minOccurs="1" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ListCreationMovement">
+<xs:sequence>
+<xs:element name="materialCode" type="xs:string" minOccurs="0"/>
+<xs:element name="plant" type="xs:string" minOccurs="0"/>
+<xs:element name="store" type="xs:string" minOccurs="0"/>
+<xs:element name="lotNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="movementType" type="xs:string" minOccurs="0"/>
+<xs:element name="stockType" type="xs:string" minOccurs="0"/>
+<xs:element name="specialStock" type="xs:string" minOccurs="0"/>
+<xs:element name="accountNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="clientNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="customerOrderNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="positionSalesOrder" type="xs:string" minOccurs="0"/>
+<xs:element name="distributionCustomerOrder" type="xs:string" minOccurs="0"/>
+<xs:element name="valuationClass" type="xs:string" minOccurs="0"/>
+<xs:element name="numberOfUnits" type="xs:decimal" minOccurs="0"/>
+<xs:element name="unitOfMeasurement" type="xs:string" minOccurs="0"/>
+<xs:element name="ISOCode" type="xs:string" minOccurs="0"/>
+<xs:element name="quantityMeasurementPurchaseOrder" type="xs:decimal" minOccurs="0"/>
+<xs:element name="unitOfMeasurementPurchaseOrder" type="xs:string" minOccurs="0"/>
+<xs:element name="unitOfMeasurementISO" type="xs:string" minOccurs="0"/>
+<xs:element name="purchaseNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="positionNumberPurchaseItem" type="xs:string" minOccurs="0"/>
+<xs:element name="shippingRules" type="xs:string" minOccurs="0"/>
+<xs:element name="complianceShippingRegulations" type="xs:string" minOccurs="0"/>
+<xs:element name="finalDeliveryIndicator" type="xs:string" minOccurs="0"/>
+<xs:element name="positionText" type="xs:string" minOccurs="0"/>
+<xs:element name="merchandiseRecipient" type="xs:string" minOccurs="0"/>
+<xs:element name="dischargeStation" type="xs:string" minOccurs="0"/>
+<xs:element name="costCenter" type="xs:string" minOccurs="0"/>
+<xs:element name="orderNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="positionNumberPurchaseDocument" type="xs:string" minOccurs="0"/>
+<xs:element name="calculationMotive" type="xs:string" minOccurs="0"/>
+<xs:element name="assetNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="subNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="reservationNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="reservePositionNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="registrationClass" type="xs:string" minOccurs="0"/>
+<xs:element name="finalDepartureReservation" type="xs:string" minOccurs="0"/>
+<xs:element name="movementMaterial" type="xs:string" minOccurs="0"/>
+<xs:element name="movementPlant" type="xs:string" minOccurs="0"/>
+<xs:element name="movementStore" type="xs:string" minOccurs="0"/>
+<xs:element name="movementLote" type="xs:string" minOccurs="0"/>
+<xs:element name="movementValuationClass" type="xs:string" minOccurs="0"/>
+<xs:element name="movementIndicator" type="xs:string" minOccurs="0"/>
+<xs:element name="movementReason" type="xs:string" minOccurs="0"/>
+<xs:element name="internalCodeRealProperty" type="xs:string" minOccurs="0"/>
+<xs:element name="referenceDateSettlement" type="xs:string" minOccurs="0"/>
+<xs:element name="costObject" type="xs:string" minOccurs="0"/>
+<xs:element name="PAObjectsNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="profitCenter" type="xs:string" minOccurs="0"/>
+<xs:element name="elementPlanProject" type="xs:string" minOccurs="0"/>
+<xs:element name="numberGraphImputation" type="xs:string" minOccurs="0"/>
+<xs:element name="operationNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="customerNumberPartner" type="xs:string" minOccurs="0"/>
+<xs:element name="amountLocalCurrency" type="xs:decimal" minOccurs="0"/>
+<xs:element name="amountSaleValueLocalCurrency" type="xs:decimal" minOccurs="0"/>
+<xs:element name="referenceDocumentExercise" type="xs:string" minOccurs="0"/>
+<xs:element name="docNumberOfRefDoc" type="xs:string" minOccurs="0"/>
+<xs:element name="positionReferenceDocument" type="xs:string" minOccurs="0"/>
+<xs:element name="expirationDate" type="xs:string" minOccurs="0"/>
+<xs:element name="productionDate" type="xs:string" minOccurs="0"/>
+<xs:element name="background" type="xs:string" minOccurs="0"/>
+<xs:element name="managementCenter" type="xs:string" minOccurs="0"/>
+<xs:element name="budgetaryPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="valueSalesOrder" type="xs:string" minOccurs="0"/>
+<xs:element name="valueSalesOrderPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="valueElementPlanProject" type="xs:string" minOccurs="0"/>
+<xs:element name="accountNumberGI" type="xs:string" minOccurs="0"/>
+<xs:element name="proposeQuantity" type="xs:string" minOccurs="0"/>
+<xs:element name="cancellationMovementType" type="xs:string" minOccurs="0"/>
+<xs:element name="europeanArticleNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="deliveryToSearch" type="xs:string" minOccurs="0"/>
+<xs:element name="deliveryPositionToSearch" type="xs:string" minOccurs="0"/>
+<xs:element name="serialNumberAuto" type="xs:string" minOccurs="0"/>
+<xs:element name="supplierlotNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="storeType" type="xs:string" minOccurs="0"/>
+<xs:element name="location" type="xs:string" minOccurs="0"/>
+<xs:element name="quantityStockOne" type="xs:decimal" minOccurs="0"/>
+<xs:element name="quantityForStoreUMAOne" type="xs:decimal" minOccurs="0"/>
+<xs:element name="unitOfMeasurementCodeISOOne" type="xs:string" minOccurs="0"/>
+<xs:element name="unitTypeStoreOne" type="xs:string" minOccurs="0"/>
+<xs:element name="quantityStockTwo" type="xs:decimal" minOccurs="0"/>
+<xs:element name="quantityForStoreUMATwo" type="xs:decimal" minOccurs="0"/>
+<xs:element name="unitOfMeasurementCodeISOTwo" type="xs:string" minOccurs="0"/>
+<xs:element name="unitTypeStoreTwo" type="xs:string" minOccurs="0"/>
+<xs:element name="storeTypeTransfer" type="xs:string" minOccurs="0"/>
+<xs:element name="locationTransfer" type="xs:string" minOccurs="0"/>
+<xs:element name="noPstChgnt" type="xs:string" minOccurs="0"/>
+<xs:element name="merchandiseNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="storeTypeMove" type="xs:string" minOccurs="0"/>
+<xs:element name="locationMove" type="xs:string" minOccurs="0"/>
+<xs:element name="materialDoc" type="xs:string" minOccurs="0"/>
+<xs:element name="materialPositionCancel" type="xs:string" minOccurs="0"/>
+<xs:element name="materialOrderCancel" type="xs:string" minOccurs="0"/>
+<xs:element name="noTransferReq" type="xs:string" minOccurs="0"/>
+<xs:element name="businessProcess" type="xs:string" minOccurs="0"/>
+<xs:element name="activityClass" type="xs:string" minOccurs="0"/>
+<xs:element name="supplierForSupply" type="xs:string" minOccurs="0"/>
+<xs:element name="materialExternal" type="xs:string" minOccurs="0"/>
+<xs:element name="materialExternalUID" type="xs:string" minOccurs="0"/>
+<xs:element name="materialVersion" type="xs:string" minOccurs="0"/>
+<xs:element name="movementExternal" type="xs:string" minOccurs="0"/>
+<xs:element name="movementExternalUID" type="xs:string" minOccurs="0"/>
+<xs:element name="movementVersionNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="functionalArea" type="xs:string" minOccurs="0"/>
+<xs:element name="businessPartnerDivision" type="xs:string" minOccurs="0"/>
+<xs:element name="companyImputation" type="xs:string" minOccurs="0"/>
+<xs:element name="delivery" type="xs:string" minOccurs="0"/>
+<xs:element name="deliveryPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="qntVoucherMerchandisePrinted" type="xs:string" minOccurs="0"/>
+<xs:element name="nbSlipsx" type="xs:string" minOccurs="0"/>
+<xs:element name="grRcptx" type="xs:string" minOccurs="0"/>
+<xs:element name="unloadPtx" type="xs:string" minOccurs="0"/>
+<xs:element name="specialIndicatorMov" type="xs:string" minOccurs="0"/>
+<xs:element name="grant" type="xs:string" minOccurs="0"/>
+<xs:element name="budgetPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="functionalAreaLong" type="xs:string" minOccurs="0"/>
+<xs:element name="identificationDocumentPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="parentId" type="xs:string" minOccurs="0"/>
+<xs:element name="lineDepth" type="xs:string" minOccurs="0"/>
+<xs:element name="quantity" type="xs:decimal" minOccurs="0"/>
+<xs:element name="baseUnitOfMeasure" type="xs:string" minOccurs="0"/>
+<xs:element name="configurableDocumentNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="budgetPeriod" type="xs:string" minOccurs="0"/>
+<xs:element name="budgetDocumentNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="budgetDocumentPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="stockSegment" type="xs:string" minOccurs="0"/>
+<xs:element name="movementSegment" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="RefEwm">
+<xs:sequence>
+<xs:element name="materialDocumentNumberEWM" type="xs:string" minOccurs="0"/>
+<xs:element name="logicalSystemEWM" type="xs:string" minOccurs="0"/>
+<xs:element name="referenceNumberScrapping" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="SerialNumber">
+<xs:sequence>
+<xs:element name="listSerialNumber" type="tns:ListSerialNumber" minOccurs="1" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ListSerialNumber">
+<xs:sequence>
+<xs:element name="positionNumberPurchaseOrder" type="xs:string" minOccurs="0"/>
+<xs:element name="serialNumber" type="xs:string" minOccurs="0"/>
+<xs:element name="univocalPieceIdentifier" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ServPartData">
+<xs:sequence>
+<xs:element name="listServPartData" type="tns:ListServPartData" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ListServPartData">
+<xs:sequence>
+<xs:element name="lineId" type="xs:string" minOccurs="0"/>
+<xs:element name="RMANumber" type="xs:string" minOccurs="0"/>
+<xs:element name="delivery" type="xs:string" minOccurs="0"/>
+<xs:element name="deliveryPosition" type="xs:string" minOccurs="0"/>
+<xs:element name="externalIdentification" type="xs:string" minOccurs="0"/>
+<xs:element name="inspectionResult" type="xs:string" minOccurs="0"/>
+<xs:element name="event" type="xs:string" minOccurs="0"/>
+<xs:element name="date" type="xs:string" minOccurs="0"/>
+<xs:element name="time" type="xs:time" minOccurs="0"/>
+<xs:element name="zonlo" type="xs:string" minOccurs="0"/>
+<xs:element name="operationStartEvent" type="xs:decimal" minOccurs="0"/>
+<xs:element name="scrappingIndicatorEWM" type="xs:string" minOccurs="0"/>
+<xs:element name="retentionAmountEWM" type="xs:decimal" minOccurs="0"/>
+<xs:element name="typeStocksGTS" type="xs:string" minOccurs="0"/>
+<xs:element name="moveTypeStocksGTS" type="xs:string" minOccurs="0"/>
+<xs:element name="conversionAmounts" type="xs:string" minOccurs="0"/>
+<xs:element name="zeroQuantity" type="xs:string" minOccurs="0"/>
+<xs:element name="numeratorForConversionQuantityUMA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="denominatorForConversionQuantityUMA" type="xs:decimal" minOccurs="0"/>
+<xs:element name="documentNumberExternalAudits" type="xs:string" minOccurs="0"/>
+<xs:element name="inspectionIotAndMaterialDocument" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TraceabilityDetailRequest">
+<xs:sequence>
+<xs:element name="dateShipping" type="xs:string" minOccurs="0"/>
+<xs:element name="idShipping" type="xs:string" minOccurs="0"/>
+<xs:element name="idBusiness" type="xs:string" minOccurs="0"/>
+<xs:element name="sysDestination" type="xs:string" minOccurs="0"/>
+<xs:element name="sysOrigin" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CreateMovementsMerchandiseSAPResponse">
+<xs:sequence>
+<xs:element name="operationStatus" type="tns:OperationStatus" minOccurs="1"/>
+<xs:element name="createMovement" type="tns:CreateMovement" minOccurs="1"/>
+<xs:element name="traceabilityDetail" type="tns:TraceabilityDetailResponse" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OperationStatus">
+<xs:sequence>
+<xs:element name="code" type="xs:int" minOccurs="1"/>
+<xs:element name="description" type="xs:string" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="CreateMovement">
+<xs:sequence>
+<xs:element name="numberDocMaterial" type="xs:string" minOccurs="1"/>
+<xs:element name="yearDocumentMaterial" type="xs:string" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TraceabilityDetailResponse">
+<xs:sequence>
+<xs:element name="operationStatus" type="xs:string" minOccurs="1"/>
+<xs:element name="code" type="xs:string" minOccurs="1"/>
+<xs:element name="message" type="xs:string" minOccurs="1"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+
+
+
+
