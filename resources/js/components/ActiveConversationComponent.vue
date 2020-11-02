@@ -11,7 +11,9 @@
                 <message-conversation-component
                 v-for="message in messages"
                 :key="message.id"
-                :writtenByMe="message.written_by_me">
+                :writtenByMe="message.written_by_me"
+                :image="message.written_by_me ? myImage: contactImage"
+                >
                 {{ message.content}}
             </message-conversation-component >
             </b-card-body>
@@ -40,7 +42,7 @@
         </b-card>
     </b-col>
     <b-col cols="4">
-    <b-img  blank  blank-color='#777'  width ="60" height="60"  rounded="circle" alt="img" class="m-1"></b-img>
+    <b-img  :src="contactImage"  width ="60" height="60"  rounded="circle"  class="m-1"></b-img>
         <p>{{ contactName}}</p>
         <hr>
         <b-form-checkbox>
@@ -62,6 +64,7 @@ export default {
     props:{
         contactId: Number,
         contactName: String,
+        contactImage: String,
         messages: Array
     },
     data(){

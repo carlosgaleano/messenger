@@ -1,7 +1,7 @@
 <template>
   <b-media :right-align="writtenByMe" vertical-align="center" class="mb-2">
     <template v-slot:aside>
-      <b-img rounded="circle" blank blank-color="#ccc" width="48" alt="placeholder"></b-img>
+      <b-img rounded="circle" :src="image"  width="48" alt="placeholder"></b-img>
     </template>
     <b-card>
         <slot></slot>
@@ -12,7 +12,8 @@
 <script>
 export default {
     props: {
-        writtenByMe: Boolean
+        writtenByMe: Boolean,
+        image:String
     },
   data() {
     return {content:'abc'};

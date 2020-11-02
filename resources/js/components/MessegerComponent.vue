@@ -20,6 +20,7 @@
           v-if="selectConversation"
           :contact-id="selectConversation.contact_id"
           :contact-name="selectConversation.contact_name"
+          :contact-image="selectConversation.contact_image"
           :messages="messages"
           @messageCreated="addMessage($event)"
         ></active-conversation-component>
