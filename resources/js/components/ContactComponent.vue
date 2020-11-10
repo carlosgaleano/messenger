@@ -23,8 +23,9 @@
 <script>
 export default {
     props:{
-        variant: String,
-        conversation: Object
+      //  variant: String,
+        conversation: Object,
+        selected: Boolean
     },
     data(){
         return{
@@ -39,6 +40,9 @@ export default {
             return moment(this.conversation.last_time,"YYYY-MM-DD hh:mm:ss a")
             .locale('es').fromNow();
 
+        },
+        variant() {
+            return this.selected ? 'info' :'';
         }
     }
 }

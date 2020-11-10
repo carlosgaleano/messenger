@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Image;
 
+//http://image.intervention.io/getting_started/installation#laravels
 class ProfileController extends Controller
 {
     //
@@ -25,9 +27,10 @@ class ProfileController extends Controller
       $file=$request->image;
 
       if($file){
-        $path = public_path('/users');
+        $path = public_path('/users/');
         $fileName=time().'.'.$file->getClientOriginalExtension();
-        $moved=$file->move($path, $fileName);
+        $Image = Image::make($file)->resize(144, 144)->save($path.$fileName);
+       // $moved=$file->move($path, $fileName);
         $user->image=$fileName;
       }
       $user->save();

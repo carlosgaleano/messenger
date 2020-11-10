@@ -1,5 +1,6 @@
 <template>
  <b-row class="h-100 mt-0"  >
+
         <b-col cols="8">
             <b-card no-body
             footer-bg-variant="light"
@@ -65,6 +66,7 @@ export default {
         contactId: Number,
         contactName: String,
         contactImage: String,
+        myImage: String,
         messages: Array
     },
     data(){

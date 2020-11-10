@@ -1,5 +1,6 @@
 <template>
   <b-container fluid style="height: calc(100vh - 57px); ">
+
     <b-row class="h-100" no-gutters>
       <b-col class="h-100">
             <b-form class="my-3 mx-2">
@@ -21,6 +22,7 @@
           :contact-id="selectConversation.contact_id"
           :contact-name="selectConversation.contact_name"
           :contact-image="selectConversation.contact_image"
+          :my-image="myImageUrl"
           :messages="messages"
           @messageCreated="addMessage($event)"
         ></active-conversation-component>
@@ -31,7 +33,7 @@
 <script>
 export default {
   props: {
-    userId: Number,
+    user: Object
   },
   data() {
     return {
@@ -43,7 +45,7 @@ export default {
   },
   mounted() {
     this.getConversation();
-    Echo.private(`users.${this.userId}`).listen("MessageSent", (data) => {
+    Echo.private(`users.${this.user.id}`).listen("MessageSent", (data) => {
       const message = data.message;
       //message.written_by_me=(this.userId == message.from_id);
       message.written_by_me = false;
@@ -93,7 +95,7 @@ export default {
         );
       });
       const autor =
-        this.userId === message.from_id ? "tú" : conversation.contact_name;
+        this.user.id === message.from_id ? "tú" : conversation.contact_name;
       conversation.last_message = `${autor}:${message.content}`;
       conversation.last_time = message.created_at;
 
@@ -120,7 +122,10 @@ export default {
           return this.conversations.filter((conversation)=>
                                     conversation.contact_name.toLowerCase()
                                     .includes(this.querySearch.toLowerCase()));
-      }
+      },
+       myImageUrl(){
+           return `/users/${this.user.image}`;
+       }
   }
 };
 </script>
