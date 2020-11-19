@@ -1,20 +1,19 @@
 <template>
-  <b-container fluid style="height: calc(100vh - 57px); ">
-
+  <b-container fluid style="height: calc(100vh - 57px)">
     <b-row class="h-100" no-gutters>
       <b-col class="h-100">
-            <b-form class="my-3 mx-2">
-
-            <b-form-input class="text-center"
+        <b-form class="my-3 mx-2">
+          <b-form-input
+            class="text-center"
             type="text"
-             v-model="querySearch"
+            v-model="querySearch"
             placeholder="Buscar contacto ..."
-            ></b-form-input>
+          ></b-form-input>
         </b-form>
         <contact-list-component
           @conversationSelected="changeActiveConversation($event)"
-          :conversations="conversationsFiltered">
-        </contact-list-component>
+          :conversations="conversationsFiltered"
+        />
       </b-col>
       <b-col cols="8" class="h-100">
         <active-conversation-component
@@ -23,9 +22,8 @@
           :contact-name="selectConversation.contact_name"
           :contact-image="selectConversation.contact_image"
           :my-image="myImageUrl"
-          :messages="messages"
           @messageCreated="addMessage($event)"
-        ></active-conversation-component>
+        />
       </b-col>
     </b-row>
   </b-container>
@@ -33,14 +31,12 @@
 <script>
 export default {
   props: {
-    user: Object
+    user: Object,
   },
   data() {
     return {
-      selectConversation: null,
-      messages: [],
       conversations: [],
-      querySearch:''
+      querySearch: "",
     };
   },
   mounted() {
@@ -66,7 +62,7 @@ export default {
   methods: {
     changeActiveConversation(conversation) {
       //console.log('nueva conv seleccionada',conversation);
-      this.selectConversation = conversation;
+      //this.selectConversation = conversation;
       this.getMessage();
     },
     getConversation() {
@@ -84,7 +80,7 @@ export default {
         })
         .then((response) => {
           // console.log(response.data)
-          this.messages = response.data;
+          this.$store.commit("newMessagesList", response.data);
         });
     },
     addMessage(message) {
@@ -106,7 +102,7 @@ export default {
         message.to_id)
       ) {
         console.log(message);
-        this.messages.push(message);
+        this.$store.commit("addMessage", message);
       }
     },
     changeStatus(user, status) {
@@ -117,15 +113,21 @@ export default {
     },
   },
 
-  computed:{
-      conversationsFiltered(){
-          return this.conversations.filter((conversation)=>
-                                    conversation.contact_name.toLowerCase()
-                                    .includes(this.querySearch.toLowerCase()));
-      },
-       myImageUrl(){
-           return `/users/${this.user.image}`;
-       }
-  }
+  computed: {
+    seletedConversation() {
+      return this.$store.state.selectConversation;
+    },
+    conversationsFiltered() {
+      return this.conversations.filter((conversation) =>
+        conversation.contact_name
+          .toLowerCase()
+          .includes(this.querySearch.toLowerCase())
+      );
+    },
+
+    myImageUrl() {
+      return `/users/${this.user.image}`;
+    },
+  },
 };
 </script>

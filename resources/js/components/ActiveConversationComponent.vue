@@ -66,8 +66,7 @@ export default {
         contactId: Number,
         contactName: String,
         contactImage: String,
-        myImage: String,
-        messages: Array
+        myImage: String
     },
     data(){
         return{
@@ -78,6 +77,9 @@ export default {
     },
     mounted(){
       //  this.getMessage();
+      eventBus.$on('example', function(data){
+          console.log('Ocurrió el evento example', data);
+      } )
 
     },
     methods:{
@@ -103,10 +105,16 @@ export default {
            el.scrollTop=el.scrollHeight;
        }
     },
-    updated(){
+    computed:{
+
+        messages(){
+            return  this.$store.state.messages;
+        }
+    }, updated(){
         this.scrollToBottom();
         console.log('messages is change');
-    }
+    },
+
 
 
     /*,
