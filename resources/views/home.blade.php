@@ -3,5 +3,4 @@
 @section('content')
  <messenger-component :user="{{ auth()->user() }}" />
 
-
 @endsection

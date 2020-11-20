@@ -1,31 +1,28 @@
 <template>
-  <b-container fluid style="height: calc(100vh - 57px); ">
-
+  <b-container fluid style="height: calc(100vh - 57px)">
     <b-row class="h-100" no-gutters>
       <b-col class="h-100">
-            <b-form class="my-3 mx-2">
-
-            <b-form-input class="text-center"
+        <b-form class="my-3 mx-2">
+          <b-form-input
+            class="text-center"
             type="text"
-             v-model="querySearch"
+            v-model="querySearch"
             placeholder="Buscar contacto ..."
-            ></b-form-input>
+          ></b-form-input>
         </b-form>
         <contact-list-component
-          @conversationSelected="changeActiveConversation($event)"
-          :conversations="conversationsFiltered">
-        </contact-list-component>
+          :conversations="conversationsFiltered"
+        />
       </b-col>
       <b-col cols="8" class="h-100">
         <active-conversation-component
-          v-if="selectConversation"
-          :contact-id="selectConversation.contact_id"
-          :contact-name="selectConversation.contact_name"
-          :contact-image="selectConversation.contact_image"
+          v-if="selectedConversation"
+          :contact-id="selectedConversation.contact_id"
+          :contact-name="selectedConversation.contact_name"
+          :contact-image="selectedConversation.contact_image"
           :my-image="myImageUrl"
-          :messages="messages"
           @messageCreated="addMessage($event)"
-        ></active-conversation-component>
+        />
       </b-col>
     </b-row>
   </b-container>
@@ -33,14 +30,12 @@
 <script>
 export default {
   props: {
-    user: Object
+    user: Object,
   },
   data() {
     return {
-      selectConversation: null,
-      messages: [],
       conversations: [],
-      querySearch:''
+      querySearch: "",
     };
   },
   mounted() {
@@ -64,11 +59,6 @@ export default {
       .leaving((user) => this.changeStatus(user, false));
   },
   methods: {
-    changeActiveConversation(conversation) {
-      //console.log('nueva conv seleccionada',conversation);
-      this.selectConversation = conversation;
-      this.getMessage();
-    },
     getConversation() {
       axios.get("/api/conversations").then((response) => {
         console.log(response.data);
@@ -79,12 +69,12 @@ export default {
       axios
         .get("/api/messages", {
           params: {
-            contact_id: this.selectConversation.contact_id,
+            contact_id: this.selectedConversation.contact_id,
           },
         })
         .then((response) => {
           // console.log(response.data)
-          this.messages = response.data;
+          this.$store.commit("newMessagesList", response.data);
         });
     },
     addMessage(message) {
@@ -99,14 +89,14 @@ export default {
       conversation.last_message = `${autor}:${message.content}`;
       conversation.last_time = message.created_at;
 
-      console.log("contaid", this.selectConversation.contact_id, message.to_id);
+      console.log("contaid", this.selectedConversation.contact_id, message.to_id);
       if (
-        (this.selectConversation.contact_id == message.from_id || "contaid",
-        this.selectConversation.contact_id,
+        (this.selectedConversation.contact_id == message.from_id || "contaid",
+        this.selectedConversation.contact_id,
         message.to_id)
       ) {
         console.log(message);
-        this.messages.push(message);
+        this.$store.commit("addMessage", message);
       }
     },
     changeStatus(user, status) {
@@ -117,15 +107,21 @@ export default {
     },
   },
 
-  computed:{
-      conversationsFiltered(){
-          return this.conversations.filter((conversation)=>
-                                    conversation.contact_name.toLowerCase()
-                                    .includes(this.querySearch.toLowerCase()));
-      },
-       myImageUrl(){
-           return `/users/${this.user.image}`;
-       }
-  }
+  computed: {
+    selectedConversation() {
+      return this.$store.state.selectedConversation;
+    },
+    conversationsFiltered() {
+      return this.conversations.filter((conversation) =>
+        conversation.contact_name
+          .toLowerCase()
+          .includes(this.querySearch.toLowerCase())
+      );
+    },
+
+    myImageUrl() {
+      return `/users/${this.user.image}`;
+    },
+  },
 };
 </script>

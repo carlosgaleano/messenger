@@ -1,15 +1,21 @@
 require('./bootstrap');
 
-window.Vue = require('vue');
-
-
+import Vue from 'vue'
+import Vuex from 'vuex'
 import {
     BootstrapVue,
     IconsPlugin
 } from 'bootstrap-vue'
 
-// Install BootstrapVue
+Vue.use(Vuex)
 Vue.use(BootstrapVue)
+
+window.eventBus = new Vue();
+
+
+
+// Install BootstrapVue
+
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
 
@@ -25,8 +31,29 @@ Vue.component('contact-list-component', require('./components/ContactListCompone
 Vue.component('active-conversation-component', require('./components/ActiveConversationComponent.vue').default);
 
 
+const store = new Vuex.Store({
+    state: {
+        selectedConversation: null,
+        messages: []
+    },
+    mutations: {
+        newMessagesList(state, messages) {
+            state.messages = messages;
+        },
+        addMessage(state,message){
+            state.messages.push(message);
+        },
+        selectConversation(state, conversation){
+            state.selectedConversation= conversation;
+        }
+
+    }
+
+})
+
 const app = new Vue({
     el: '#app',
+    store,
     methods: {
         logout() {
             document.getElementById('logout-form').submit();
