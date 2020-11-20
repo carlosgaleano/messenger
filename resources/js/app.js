@@ -103,10 +103,10 @@ const store = new Vuex.Store({
         },
         postMessage(context, newMessage) {
             const params = {
-                to_id: context.state.selectedConversation.contactId,
+                to_id: context.state.selectedConversation.contact_id,
                 content: newMessage
             };
-            console.log('parametrosADD', params,context.state.selectedConversation)
+            //console.log('parametrosADD', params,context.state.selectedConversation)
             axios.post('/api/messages', params)
                 .then((response) => {
                     if (response.data.success) {
