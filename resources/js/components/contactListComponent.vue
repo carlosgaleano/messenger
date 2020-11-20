@@ -1,7 +1,7 @@
 <template>
   <b-list-group>
     <contact-component
-      v-for="conversation in conversations"
+      v-for="conversation in conversationsFiltered"
       :key="conversation.id"
       :conversation="conversation"
       :selected="isSelected(conversation)"
@@ -26,7 +26,7 @@ export default {
 
   methods: {
     selectConversation(conversation) {
-      this.$store.commit("selectConversation", conversation);
+      this.$store.dispatch('getMessage', conversation);
       // eventBus.$emit('example',conversation);
     },
     isSelected(conversation) {
@@ -40,6 +40,9 @@ export default {
     selectedConversation() {
       return this.$store.state.selectedConversation;
     },
+    conversationsFiltered() {
+       return this.$store.getters.conversationsFiltered;
+    }
   },
 };
 </script>
