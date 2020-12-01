@@ -42,8 +42,9 @@
         </b-card>
     </b-col>
     <b-col cols="4">
-    <b-img  :src="selectedConversation.contactImage"  width ="60" height="60"  rounded="circle"  class="m-1"></b-img>
-        <p>{{ selectedConversation.contactName}}</p>
+
+    <b-img  :src="selectedConversation.contact_image"  width ="60" height="60"  rounded="circle"  class="m-1"></b-img>
+        <p>{{ selectedConversation.contact_name}}</p>
         <hr>
         <b-form-checkbox>
             Desactivar notificaciones
@@ -61,9 +62,7 @@
 </style>
 <script>
 export default {
-    props:{
-        myImage: String
-    },
+
     data(){
         return{
            // messages:[],
@@ -91,6 +90,10 @@ export default {
        }
     },
     computed:{
+        myImage(){
+
+          return  `/users/${this.$store.state.user.image}`;
+        },
         selectedConversation(){
          return   this.$store.state.selectedConversation;
         },

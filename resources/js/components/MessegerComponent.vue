@@ -8,7 +8,6 @@
       <b-col cols="8" class="h-100">
         <active-conversation-component
           v-if="selectedConversation"
-          :my-image="myImageUrl"
         />
       </b-col>
     </b-row>
@@ -59,10 +58,6 @@ export default {
       return this.$store.state.selectedConversation;
     },
 
-
-    myImageUrl() {
-      return `/users/${this.user.image}`;
-    },
   },
 };
 </script>
