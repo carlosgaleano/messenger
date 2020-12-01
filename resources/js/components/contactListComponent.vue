@@ -26,6 +26,7 @@ export default {
 
   methods: {
     selectConversation(conversation) {
+        this.$router.push(`/chat/${conversation.id}`);
       this.$store.dispatch('getMessage', conversation);
       // eventBus.$emit('example',conversation);
     },
