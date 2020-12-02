@@ -43,12 +43,13 @@ export default {
         users.forEach((user) => this.changeStatus(user, true));
         //
       })
-      .joining((user) => this.changeStatus(user, true))
+      .joining((user) => {this.changeStatus(user, true)
+      console.log('changeMessage',user)
+      })
 
       .leaving((user) => this.changeStatus(user, false));
   },
   methods: {
-    addMessage(message) {},
     changeStatus(user, status) {
       const index = this.$store.state.conversations.findIndex(
         (conversation) => {
@@ -56,8 +57,11 @@ export default {
         }
       );
       if (index >= 0)
-        this.$set(this.$store.stateconversations[index], "online", status);
+        this.$set(this.$store.state.conversations[index], "online", status);
     },
+    addMessage(message){
+        this.$store.commit('addMessage', message);
+    }
   },
 
   computed: {

@@ -82,6 +82,7 @@ export default {
        postMessage(){
 
            this.$store.dispatch('postMessage',this.newMessage)
+                       .then(()=>this.newMessage='');
 
        },
        scrollToBottom(){
