@@ -9,10 +9,13 @@ import {
 import store from './store'
 
 import VueRouter from 'vue-router'
+import Vuelidate from 'vuelidate'
+
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(IconsPlugin);
+Vue.use(Vuelidate)
 
 import MessengerComponent from './components/MessegerComponent.vue';
 import ExampleComponent from './components/Example2Component.vue';
